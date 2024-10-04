@@ -40,12 +40,11 @@ public class StudentList {
             }
         } else if (args[0].contains ( Constants.FIND_ENTRY )) {
             try {
-                boolean done = false;
                 String target = args[0].substring ( 1 );
-                for ( int idx = 0; idx < words.length && !done; idx++ ) {
+                for ( int idx = 0; idx < words.length ; idx++ ) {
                     if (words[idx].trim ().equals ( target )) {
                         System.out.println ( Constants.FOUND_TEXT );
-                        done = true;
+                        break;
                     }
                 }
             } catch (Exception e) {
