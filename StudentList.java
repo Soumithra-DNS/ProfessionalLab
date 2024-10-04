@@ -33,15 +33,15 @@ public class StudentList {
         } else if (args[0].contains ( Constants.ADD_ENTRY )) {
             try {
                 String word = args[0].substring ( 1 );
-                DateFormat dateFormat = new SimpleDateFormat ( Constants.DATE_FORMAT);
-                String finalDate = dateFormat.format (  new Date () );
+                DateFormat dateFormat = new SimpleDateFormat ( Constants.DATE_FORMAT );
+                String finalDate = dateFormat.format ( new Date () );
                 file_writer ( Constants.FILE_NAME, word, finalDate );
             } catch (Exception e) {
             }
         } else if (args[0].contains ( Constants.FIND_ENTRY )) {
             try {
                 String target = args[0].substring ( 1 );
-                for ( int idx = 0; idx < words.length ; idx++ ) {
+                for ( int idx = 0; idx < words.length; idx++ ) {
                     if (words[idx].trim ().equals ( target )) {
                         System.out.println ( Constants.FOUND_TEXT );
                         break;
@@ -49,11 +49,13 @@ public class StudentList {
                 }
             } catch (Exception e) {
             }
-        } else if (args[0].contains ( Constants.SHOW_COUNT)) {
+        } else if (args[0].contains ( Constants.SHOW_COUNT )) {
             try {
-                System.out.println ( words.length + Constants.WORDS_FOUND);
+                System.out.println ( words.length + Constants.WORDS_FOUND );
             } catch (Exception e) {
             }
+        } else {
+            System.out.println ( Constants.ARGUMENTS );
         }
         System.out.println ( Constants.LOADED_DATA_TEXT );
     }
@@ -66,6 +68,7 @@ public class StudentList {
             return null;
         }
     }
+
     public static void file_writer(String file_name, String word, String final_date) {
         try {
             BufferedWriter bufferedReader = new BufferedWriter ( new FileWriter ( file_name, true ) );
