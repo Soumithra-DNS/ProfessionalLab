@@ -51,20 +51,7 @@ public class StudentList {
             }
         } else if (args[0].contains ( Constants.SHOW_COUNT)) {
             try {
-                char characters[] = readLine.toCharArray ();
-                boolean in_word = false;
-                int count = 0;
-                for ( char character : characters ) {
-                    if (character == Constants.SPACE) {
-                        if (!in_word) {
-                            count++;
-                            in_word = true;
-                        } else {
-                            in_word = false;
-                        }
-                    }
-                }
-                System.out.println ( count + Constants.WORDS_FOUND);
+                System.out.println ( words.length + Constants.WORDS_FOUND);
             } catch (Exception e) {
             }
         }
