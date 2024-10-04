@@ -8,57 +8,57 @@ public class StudentList {
     public static void main(String[] args) {
 //		Check arguments
         if (args == null || args.length != 1) {
-            System.out.println ( "Wrong arguments" );
+            System.out.println ( Constants.ARGUMENTS );
             return;
         }
 
-        String readLine = file_reader ( "students.txt" );
-        String words[] = readLine.split ( "," );
-        System.out.println ( "Loading data ..." );
+        String readLine = file_reader ( Constants.FILE_NAME );
+        String words[] = readLine.split ( Constants.STUDENT_ENTRY_DELIMITER );
+        System.out.println ( Constants.LOADING_DATA_TEXT );
 
-        if (args[0].equals ( "a" )) {
+        if (args[0].equals ( Constants.SHOW_ALL )) {
             try {
                 for ( String word : words ) {
                     System.out.println ( word.trim () );
                 }
             } catch (Exception e) {
             }
-        } else if (args[0].equals ( "r" )) {
+        } else if (args[0].equals ( Constants.SHOW_RANDOM )) {
             try {
                 Random random = new Random ();
                 int randomInt = random.nextInt ( words.length );
                 System.out.println ( words[randomInt] );
             } catch (Exception e) {
             }
-        } else if (args[0].contains ( "+" )) {
+        } else if (args[0].contains ( Constants.ADD_ENTRY )) {
             try {
                 String word = args[0].substring ( 1 );
                 Date date = new Date ();
-                String dataFormetSample = "dd/mm/yyyy-hh:mm:ss a";
+                String dataFormetSample = Constants.DATE_FORMAT;
                 DateFormat dateFormat = new SimpleDateFormat ( dataFormetSample );
                 String finalDate = dateFormat.format ( date );
-                file_writer ( "students.txt", word, finalDate );
+                file_writer ( Constants.FILE_NAME, word, finalDate );
             } catch (Exception e) {
             }
-        } else if (args[0].contains ( "?" )) {
+        } else if (args[0].contains ( Constants.FIND_ENTRY )) {
             try {
                 boolean done = false;
                 String target = args[0].substring ( 1 );
                 for ( int idx = 0; idx < words.length && !done; idx++ ) {
                     if (words[idx].trim ().equals ( target )) {
-                        System.out.println ( "We found it!" );
+                        System.out.println ( Constants.FOUND_TEXT );
                         done = true;
                     }
                 }
             } catch (Exception e) {
             }
-        } else if (args[0].contains ( "c" )) {
+        } else if (args[0].contains ( Constants.SHOW_COUNT)) {
             try {
                 char characters[] = readLine.toCharArray ();
                 boolean in_word = false;
                 int count = 0;
                 for ( char character : characters ) {
-                    if (character == ' ') {
+                    if (character == Constants.SPACE) {
                         if (!in_word) {
                             count++;
                             in_word = true;
@@ -67,11 +67,11 @@ public class StudentList {
                         }
                     }
                 }
-                System.out.println ( count + " word(s) found " );
+                System.out.println ( count + Constants.WORDS_FOUND);
             } catch (Exception e) {
             }
         }
-        System.out.println ( "Data Loaded." );
+        System.out.println ( Constants.LOADED_DATA_TEXT );
     }
 
     public static String file_reader(String file_name) {
@@ -85,7 +85,7 @@ public class StudentList {
     public static void file_writer(String file_name, String word, String final_date) {
         try {
             BufferedWriter bufferedReader = new BufferedWriter ( new FileWriter ( file_name, true ) );
-            bufferedReader.write ( ", " + word + "\nList last updated on " + final_date );
+            bufferedReader.write ( Constants.STUDENT_ENTRY_DELIMITER + word + Constants.UPDATE_CONTENT + final_date );
             bufferedReader.close ();
         } catch (Exception e) {
 
