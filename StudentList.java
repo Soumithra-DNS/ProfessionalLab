@@ -33,10 +33,8 @@ public class StudentList {
         } else if (args[0].contains ( Constants.ADD_ENTRY )) {
             try {
                 String word = args[0].substring ( 1 );
-                Date date = new Date ();
-                String dataFormetSample = Constants.DATE_FORMAT;
-                DateFormat dateFormat = new SimpleDateFormat ( dataFormetSample );
-                String finalDate = dateFormat.format ( date );
+                DateFormat dateFormat = new SimpleDateFormat ( Constants.DATE_FORMAT);
+                String finalDate = dateFormat.format (  new Date () );
                 file_writer ( Constants.FILE_NAME, word, finalDate );
             } catch (Exception e) {
             }
